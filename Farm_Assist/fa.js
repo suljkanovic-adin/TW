@@ -669,6 +669,7 @@ const sendFarm = function ($this) {
         let nextFarmIcon = document.querySelector('a[class^="farm_icon_"]');
         if (nextFarmIcon) {
             simulateClick(nextFarmIcon);
+            console.log("Simulating click on farm icon:", nextFarmIcon);
         }
       });
     }
