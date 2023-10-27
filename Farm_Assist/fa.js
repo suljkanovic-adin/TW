@@ -630,8 +630,16 @@ const sendFarm = function () {
     farmIcons.forEach((icon, index) => {
         setTimeout(() => {
             console.log(`Clicking farm icon #${index + 1}`);
-            icon.click();
-        }, index * 1000);  // Delay of 1 second between each click
+            
+            // Simulate a mouse click
+            let clickEvent = new MouseEvent('click', {
+                'bubbles': true,
+                'cancelable': true,
+                'view': window
+            });
+            icon.dispatchEvent(clickEvent);
+            
+        }, index * 1000);
     });
 };
 
