@@ -344,7 +344,10 @@ window.FarmGod.Main = (function (Library, Translation) {
               UI.updateProgressBar($('#FarmGodProgessbar'), 0, plan.counter);
               $('#FarmGodProgessbar').data('current', 0).data('max', plan.counter);
 
-              sendFarm();
+              setTimeout(() => {
+                sendFarm();
+              }, 2000);  // Wait for 2 seconds before calling sendFarm
+            
             });
           });
         });
