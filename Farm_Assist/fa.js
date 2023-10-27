@@ -365,13 +365,7 @@ window.FarmGod.Main = (function (Library, Translation) {
   };
 
   const bindEventHandlers = function () {
-    $('.farmGod_icon').off('click').on('click', function () {
-      if (game_data.market != 'nl' || $(this).data('origin') == curVillage) {
-        sendFarm($(this));
-      } else {
-        UI.ErrorMessage(t.messages.villageError);
-      }
-    });
+    // Removed the manual click event listener for .farmGod_icon
 
     $(document).off('keydown').on('keydown', (event) => {
       if ((event.keyCode || event.which) == 13) {
@@ -384,7 +378,8 @@ window.FarmGod.Main = (function (Library, Translation) {
       UI.SuccessMessage(t.messages.villageChanged);
       $(this).closest('tr').remove();
     });
-  };
+};
+
 
   const buildOptions = function () {
     let options = JSON.parse(localStorage.getItem('farmGod_options')) || { optionGroup: 0, optionDistance: 25, optionTime: 10, optionLosses: false, optionMaxloot: true, optionNewbarbs: true };
@@ -630,15 +625,16 @@ window.FarmGod.Main = (function (Library, Translation) {
 
 
 // Modify the existing sendFarm function
-const sendFarm = function ($this) {
-    let farmIcons = document.querySelectorAll('.farm_icon_a');
+const sendFarm = function () {
+    let farmIcons = document.querySelectorAll('.farmGod_icon');
     farmIcons.forEach((icon, index) => {
-    setTimeout(() => {
-        console.log(`Clicking farm icon #${index + 1}`);
-        icon.click();
-    }, index * 1000);  // Delay of 1 second between each click
-});
+        setTimeout(() => {
+            console.log(`Clicking farm icon #${index + 1}`);
+            icon.click();
+        }, index * 1000);  // Delay of 1 second between each click
+    });
 };
+
 
   return {
     init
