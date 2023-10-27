@@ -623,13 +623,26 @@ window.FarmGod.Main = (function (Library, Translation) {
     return plan;
   };
 
-let farmIcons = document.querySelectorAll('.farm_icon_a');
-farmIcons.forEach((icon, index) => {
+  // Function to simulate a click event on a given element
+function simulateClick(element) {
+    var event = new MouseEvent('click', {
+        'bubbles': true,
+        'cancelable': true,
+        'view': window
+    });
+    element.dispatchEvent(event);
+}
+
+// Modify the existing sendFarm function
+const sendFarm = function ($this) {
+    let farmIcons = document.querySelectorAll('.farm_icon_a');
+    farmIcons.forEach((icon, index) => {
     setTimeout(() => {
         console.log(`Clicking farm icon #${index + 1}`);
         icon.click();
     }, index * 1000);  // Delay of 1 second between each click
 });
+};
 
 
   return {
