@@ -369,7 +369,7 @@ window.FarmGod.Main = (function (Library, Translation) {
 
     $(document).off('keydown').on('keydown', (event) => {
       if ((event.keyCode || event.which) == 13) {
-        $('.farmGod_icon').first().trigger('click');
+        $('.farm_icon_a').first().trigger('click');
       }
     });
 
@@ -626,7 +626,7 @@ window.FarmGod.Main = (function (Library, Translation) {
 
 // Modify the existing sendFarm function
 const sendFarm = function () {
-    let farmIcons = document.querySelectorAll('.farmGod_icon');
+    let farmIcons = document.querySelectorAll('.farm_icon_a');
     farmIcons.forEach((icon, index) => {
         setTimeout(() => {
             console.log(`Clicking farm icon #${index + 1}`);
