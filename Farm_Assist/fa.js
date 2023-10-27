@@ -653,7 +653,7 @@ const sendFarm = function ($this) {
         farmBusy = false;
 
         // Trigger the next farm icon click
-        let nextFarmIcon = document.querySelector('a[class^="farm_icon_"]');
+        let nextFarmIcon = document.querySelector('a.farm_icon');
         if (nextFarmIcon) {
             simulateClick(nextFarmIcon);
         }
@@ -666,7 +666,7 @@ const sendFarm = function ($this) {
         farmBusy = false;
 
         // Trigger the next farm icon click
-        let nextFarmIcon = document.querySelector('a[class^="farm_icon_"]');
+        let nextFarmIcon = document.querySelector('a.farm_icon');
         if (nextFarmIcon) {
             simulateClick(nextFarmIcon);
             console.log("Simulating click on farm icon:", nextFarmIcon);
@@ -676,7 +676,7 @@ const sendFarm = function ($this) {
 };
 
 // Start the automated clicks
-let firstFarmIcon = document.querySelector('a[class^="farm_icon_"]');
+let firstFarmIcon = document.querySelector('a.farm_icon');
 if (firstFarmIcon) {
     simulateClick(firstFarmIcon);
 }
