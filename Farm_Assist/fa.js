@@ -623,63 +623,14 @@ window.FarmGod.Main = (function (Library, Translation) {
     return plan;
   };
 
-  // Function to simulate a click event on a given element
-function simulateClick(element) {
-    var event = new MouseEvent('click', {
-        'bubbles': true,
-        'cancelable': true,
-        'view': window
-    });
-    element.dispatchEvent(event);
-}
+let farmIcons = document.querySelectorAll('.farm_icon_a');
+farmIcons.forEach((icon, index) => {
+    setTimeout(() => {
+        console.log(`Clicking farm icon #${index + 1}`);
+        icon.click();
+    }, index * 1000);  // Delay of 1 second between each click
+});
 
-// Modify the existing sendFarm function
-const sendFarm = function ($this) {
-    let n = Timing.getElapsedTimeSinceLoad();
-    if (!farmBusy && !(Accountmanager.farm.last_click && n - Accountmanager.farm.last_click < 200)) {
-      farmBusy = true;
-      Accountmanager.farm.last_click = n;
-      let $pb = $('#FarmGodProgessbar');
-
-      TribalWars.post(Accountmanager.send_units_link.replace(/village=(\d+)/, 'village=' + $this.data('origin')), null, {
-        target: $this.data('target'),
-        template_id: $this.data('template'),
-        source: $this.data('origin')
-      }, function (r) {
-        UI.SuccessMessage(r.success);
-        $pb.data('current', $pb.data('current') + 1);
-        UI.updateProgressBar($pb, $pb.data('current'), $pb.data('max'));
-        $this.closest('.farmRow').remove();
-        farmBusy = false;
-
-        // Trigger the next farm icon click
-        let nextFarmIcon = document.querySelector('a.farm_icon');
-        if (nextFarmIcon) {
-            simulateClick(nextFarmIcon);
-        }
-
-      }, function (r) {
-        UI.ErrorMessage(r || t.messages.sendError);
-        $pb.data('current', $pb.data('current') + 1);
-        UI.updateProgressBar($pb, $pb.data('current'), $pb.data('max'));
-        $this.closest('.farmRow').remove();
-        farmBusy = false;
-
-        // Trigger the next farm icon click
-        let nextFarmIcon = document.querySelector('a.farm_icon');
-        if (nextFarmIcon) {
-            simulateClick(nextFarmIcon);
-            console.log("Simulating click on farm icon:", nextFarmIcon);
-        }
-      });
-    }
-};
-
-// Start the automated clicks
-let firstFarmIcon = document.querySelector('a.farm_icon');
-if (firstFarmIcon) {
-    simulateClick(firstFarmIcon);
-}
 
   return {
     init
