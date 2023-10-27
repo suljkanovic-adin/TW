@@ -368,10 +368,13 @@ window.FarmGod.Main = (function (Library, Translation) {
     // Removed the manual click event listener for .farmGod_icon
 
     $(document).off('keydown').on('keydown', (event) => {
-      if ((event.keyCode || event.which) == 13) {
-        $('.farmGod_icon').first().trigger('click');
-      }
-    });
+        if ((event.keyCode || event.which) == 13) {
+          // Check if sendFarm is in progress, if so, do not trigger the click
+          if (!window.FarmGod.sendFarmInProgress) {
+            $('.farmGod_icon').first().trigger('click');
+          }
+        }
+      });
 
     $('.switchVillage').off('click').on('click', function () {
       curVillage = $(this).data('id');
@@ -448,6 +451,13 @@ window.FarmGod.Main = (function (Library, Translation) {
     }
 
     html += `</table></div>`;
+
+    // Append the table to the DOM (if this is done here)
+    // For example:
+    // document.querySelector('#someContainer').innerHTML = html;
+
+    // Call sendFarm after the table is built and appended
+    sendFarm();
 
     return html;
   };
@@ -624,23 +634,23 @@ window.FarmGod.Main = (function (Library, Translation) {
   };
 
 
-// Modify the existing sendFarm function
-const sendFarm = function () {
+  const sendFarm = function () {
+    window.FarmGod.sendFarmInProgress = true;  // Set the flag
     let farmIcons = document.querySelectorAll('.farmGod_icon');
     farmIcons.forEach((icon, index) => {
         setTimeout(() => {
             console.log(`Clicking farm icon #${index + 1}`);
-            
-            // Simulate a mouse click
             let clickEvent = new MouseEvent('click', {
                 'bubbles': true,
                 'cancelable': true,
                 'view': window
             });
             icon.dispatchEvent(clickEvent);
-            
         }, index * 1000);
     });
+    setTimeout(() => {
+        window.FarmGod.sendFarmInProgress = false;  // Reset the flag after all clicks
+    }, farmIcons.length * 1000);
 };
 
 
