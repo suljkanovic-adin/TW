@@ -343,6 +343,8 @@ window.FarmGod.Main = (function (Library, Translation) {
               UI.InitProgressBars();
               UI.updateProgressBar($('#FarmGodProgessbar'), 0, plan.counter);
               $('#FarmGodProgessbar').data('current', 0).data('max', plan.counter);
+
+              sendFarm();
             });
           });
         });
