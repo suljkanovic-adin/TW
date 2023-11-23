@@ -22,7 +22,7 @@ function refreshPageAfterClicks() {
     }, totalClickTime + 5000); // 5 seconds after the last click
 }
 
-const refreshInterval = 10000; // 60 seconds
+const refreshInterval = 1800000; // 60 seconds
 
 setInterval(() => {
     refreshPageAfterClicks();
