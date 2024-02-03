@@ -1030,9 +1030,9 @@ function autoPressAButton() {
 }
 var autoPressInterval = setInterval(autoPressAButton, 500); // Adjust the interval time as needed
 
-// Refresh the page every 5 minutes
+/* // Refresh the page every 5 minutes
 setTimeout(function() {
     location.reload();
-}, 3000); // Adjust the interval time as needed
+}, 3000); // Adjust the interval time as needed */
 
 run();
