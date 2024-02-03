@@ -196,13 +196,11 @@ setTimeout(function(){
     
 
     function execute() {
+       $(document).ready(function () {
         createOptionWindow();
-        if(!document.hasFocus() && !cheat)
-            isWorking(true);
 
-        updateTitle();
-
-        setTimeout(function() {
+        // Execute the script based on the selected option
+        setTimeout(function () {
             var selectedOption = $("input[name='farmOption']:checked").val();
             startFarm(selectedOption);
             closeOptionWindow();
