@@ -180,7 +180,7 @@ setTimeout(function(){
         updateTitle();
 
         setTimeout(function() {
-            startFarm('a');
+            startFarm('c');
         }, 100);
     }
 
