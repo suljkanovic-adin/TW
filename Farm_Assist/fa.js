@@ -196,17 +196,18 @@ setTimeout(function(){
     
 
     function execute() {
-       // Show the option window after the DOM is ready
+        // Show the option window after the DOM is ready
         $(document).ready(function () {
             createOptionWindow();
-    
-            // Execute the script based on the selected option
-            setTimeout(function () {
-                var selectedOption = $("input[name='farmOption']:checked").val();
-                startFarm(selectedOption);
-                closeOptionWindow();
-            }, 100);
         });
+    
+        // Execute the script based on the selected option
+        setTimeout(function () {
+            var selectedOption = $("input[name='farmOption']:checked").val();
+            console.log("Selected option:", selectedOption);
+            startFarm(selectedOption);
+            closeOptionWindow();
+        }, 100);
     }
 
     function updateTitle() {
