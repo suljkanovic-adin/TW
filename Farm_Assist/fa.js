@@ -1024,11 +1024,11 @@ function showKeys() {
     }
 }
 
-// Automatically press 'C' button every 5 seconds
+// Automatically press 'A' button every 5 seconds
 function autoPressAButton() {
     click('a');
 }
-var autoPressInterval = setInterval(autoPressCButton, 500); // Adjust the interval time as needed
+var autoPressInterval = setInterval(autoPressAButton, 500); // Adjust the interval time as needed
 
 // Refresh the page every 5 minutes
 setTimeout(function() {
