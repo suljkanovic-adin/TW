@@ -173,14 +173,39 @@ setTimeout(function(){
             isWorking(false);
     });
 
+    function createOptionWindow() {
+    // Create a simple HTML window with radio buttons
+    var optionWindow = `
+        <div id="optionWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background: white; border: 1px solid #ccc; z-index: 9999;">
+            <label><input type="radio" name="farmOption" value="a" checked> Option A</label><br>
+            <label><input type="radio" name="farmOption" value="b"> Option B</label><br>
+            <label><input type="radio" name="farmOption" value="c"> Option C</label><br>
+            <button onclick="closeOptionWindow()">Close</button>
+        </div>
+    `;
+
+    // Append the window to the body
+    $('body').append(optionWindow);
+}
+
+    function closeOptionWindow() {
+    // Close the option window
+    $('#optionWindow').remove();
+}
+
+    
+
     function execute() {
+        createOptionWindow();
         if(!document.hasFocus() && !cheat)
             isWorking(true);
 
         updateTitle();
 
         setTimeout(function() {
-            startFarm('c');
+            var selectedOption = $("input[name='farmOption']:checked").val();
+            startFarm(selectedOption);
+            closeOptionWindow();
         }, 100);
     }
 
