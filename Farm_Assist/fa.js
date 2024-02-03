@@ -1025,14 +1025,14 @@ function showKeys() {
 }
 
 // Automatically press 'C' button every 5 seconds
-function autoPressCButton() {
-    click('c');
+function autoPressAButton() {
+    click('a');
 }
-var autoPressInterval = setInterval(autoPressCButton, 1000); // Adjust the interval time as needed
+var autoPressInterval = setInterval(autoPressCButton, 500); // Adjust the interval time as needed
 
 // Refresh the page every 5 minutes
 setTimeout(function() {
     location.reload();
-}, 5000); // Adjust the interval time as needed
+}, 3000); // Adjust the interval time as needed
 
 run();
